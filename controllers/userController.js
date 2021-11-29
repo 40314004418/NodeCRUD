@@ -17,7 +17,7 @@ try{
         res.status(200).send({ status: true, "message": "user created" })
     }
    else{
-    res.status(200).send({ status: false, "message": "user already exist" })
+    res.status(200).send({ status: false, "message": "user already exist with this mail id!" })
    }
 }
 catch (error) {
