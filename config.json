@@ -1,0 +1,25 @@
+{
+    "testing":1,
+    
+    "database":{
+       "host":"172.16.1.19",
+       "port":"3306",
+       "user":"localadmin",
+       "database":"sqybeatsdb_2021_03_11",
+       "password":"Sqyrd@5432"
+    },
+    "Localdatabase":{
+        "host":"localhost",
+        "port":"3306",
+        "user":"root",
+        "password":"root",
+        "database":"nodecrud"
+     },
+     "mailConfig":{
+        "host":"smtp.gmail.com",
+        "port":"465",
+        "email":"sqydevhelpdesk@gmail.com",
+        "password":"India#1234"
+     }
+
+}

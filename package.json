@@ -17,10 +17,15 @@
   },
   "homepage": "https://github.com/40314004418/NodeCRUD#readme",
   "dependencies": {
+    "axios": "^0.24.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "http": "0.0.1-security",
     "mysql2": "^2.3.3",
+    "nodemailer": "^6.7.2",
+    "request": "^2.88.2",
     "sequelize": "^6.12.0-alpha.1"
   }
 }

@@ -1,12 +1,13 @@
 const mysql = require('mysql2/promise');
 const { Sequelize } = require('sequelize');
+const mainConfig=require('../config.json');
 
-        const host = "172.16.1.19";//mainConfig.database.host;
-        const port = 3306;//mainConfig.database.port;
-        const user = "localadmin";//mainConfig.database.user;
-        const password = "Sqyrd@5432";//mainConfig.database.password;
-        const database = "sqybeatsdb_2021_03_11";//mainConfig.database.database;
-        console.log('hi')
+        const host = mainConfig.Localdatabase.host;
+        const port = mainConfig.Localdatabase.port;
+        const user = mainConfig.Localdatabase.user;
+        const password = mainConfig.Localdatabase.password;
+        const database = mainConfig.Localdatabase.database;
+        console.log('Connection Established..........')
         console.log(user, password, database)
       
         // connect to db

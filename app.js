@@ -7,15 +7,19 @@ const bodyParser=require('body-parser');
 
 sequelize.sync();
 //root directory
-
+// ---------------------------------------
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: false }));
 app.use(bodyParser.json({ limit: '50mb' }));
 const userRoute=require('./router/myuser');
+const commonRoute=require('./router/common');
+// ---------------------------------------
+app.use('/user',userRoute);
+app.use('/common',commonRoute);
 
-app.use('/',userRoute)
+
 app.get('/',async(req,res)=>{
     const user=await User.findAll();
-    console.log(user)
+    //console.log(user)
     res.status(200).json({"status":true,"message":user})
 })
 
