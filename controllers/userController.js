@@ -14,7 +14,6 @@ async function createUser(req, res) {
                 email: data.email
             }
         })
-        //console.log("Is EMail Exist: ", checkEMail);
         const payload = {
             username: data.username,
             email: data.email,
