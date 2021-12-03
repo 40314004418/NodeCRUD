@@ -6,7 +6,7 @@ async function nodeMailer(toEmail, subject, rendered, bcc) {
 
     try {
         const transporter = await nodemailer.createTransport({
-            service: 'SendGrid',
+            service: 'gmail',
             host: mainConfig.mailConfig.host,
             port: mainConfig.mailConfig.port,
             secure: false,

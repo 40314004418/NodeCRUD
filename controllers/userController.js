@@ -1,7 +1,7 @@
 const User = require("../models/user");
 const bcrypt = require('bcrypt');
 const nodemailer = require('../helper/mailer');
-
+const fs=require('fs').promises;
 
 const saltRounds = 10;
 const salt = bcrypt.genSaltSync(saltRounds);
@@ -9,6 +9,7 @@ const salt = bcrypt.genSaltSync(saltRounds);
 async function createUser(req, res) {
     try {
         const data = req.body;
+        console.log(data);
         const checkEMail = await User.findOne({
             where: {
                 email: data.email
@@ -21,15 +22,24 @@ async function createUser(req, res) {
         }
         if (!checkEMail) {
             const user = await User.create(payload);
-            res.status(200).send({
-                status: true,
-                "message": "user created"
-            });
-            rendered="<p>hiwerl</p>";
-            let subject = "New User Created";
-            console.log(subject);
-            // let sentEmail = await nodemailer.nodeMailer(payload.email, subject, rendered, null);
+            // res.status(200).send({
+            //     status: true,
+            //     "message": "user created"
+            // });
+            
+            /*Sending mail */
+           let mailbody=await fs.readFile('./emailtempletes/Newuser.html');
+           let subject = "New User Created";
+           rendered=mailbody.toString()
+           .replace(/{Subject}/g,`${subject}`)
+           .replace(/{Email}/g,`${payload.email}`)
+           .replace(/{Name}/g,`${payload.username}`)
+           ;
 
+            console.log(subject);
+            let sentEmail = await nodemailer.nodeMailer(payload.email, subject, rendered, null);
+            console.log("<---------------",sentEmail,"------------------------------>")
+            res.render('index',{title:"Express"});
 
         } else {
             res.status(200).send({

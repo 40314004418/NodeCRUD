@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div style="background-color: black;justify-content: center;  display: flex;">
+        <img src="https://static.squareyards.com/ui-assets/images/squareyards-logo-new.png" height="100px" width="100px" />
+    </div>
+<div>
+  <br/>
+</div>
+
+    <div style="justify-content: center;  display: flex; ">
+        <form action="/user/createuser" method="post">
+
+            <table style="width:30%;">
+                <tr>
+                    <td><label for="username"> User Name:</label></td>
+                    <td><input type="text" name="username"></td>
+                </tr>
+                <tr>
+                    <td> <label for="password">Password:</label></td>
+                    <td> <input type="password" name="password"></td>
+                </tr>
+                <tr>
+                    <td><label for="email">Email:</label></td>
+                    <td><input type="text" name="email"></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Submit" class="btn btn-success"></td>
+                </tr>
+            </table>
+
+
+        </form>
+    </div>
+
+    <br />
+    {% for data in user%}
+    <h4>{data}</h4>
+    {% endfor%}
+</body>
+</html>
