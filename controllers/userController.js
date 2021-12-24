@@ -22,10 +22,10 @@ async function createUser(req, res) {
         }
         if (!checkEMail) {
             const user = await User.create(payload);
-            // res.status(200).send({
-            //     status: true,
-            //     "message": "user created"
-            // });
+            res.status(200).send({
+                status: true,
+                "message": "user created"
+            });
             
             /*Sending mail */
            let mailbody=await fs.readFile('./emailtempletes/Newuser.html');
@@ -39,8 +39,8 @@ async function createUser(req, res) {
             console.log(subject);
             let sentEmail = await nodemailer.nodeMailer(payload.email, subject, rendered, null);
             console.log("<---------------",sentEmail,"------------------------------>")
-            res.render('index',{title:"Express"});
-
+           // res.render('login.ejs',{ title: 'updated User list ',useremail:payload.email});
+           console.log("<---------------ADDED successfully----------------------------->")
         } else {
             res.status(200).send({
                 status: false,
