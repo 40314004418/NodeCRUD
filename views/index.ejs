@@ -54,15 +54,15 @@
             <td> {{User.id }}
             <td> {{User.username }}
             <td> {{User.email }}
-            <td> {{User.createdAt.Date()}}
-            <td> {{User.updateAt }}
+            <td> {{JSON.stringify(User.createdAt)}}
+            <td> {{JSON.stringify(Date(User.updateAt)) }}
         </tr>
         {% endfor %}
     
     </table>
   
 
-
+    <%= JSON.stringify(user[0].id) %>
        <!-- <h6>{{title}} {{JSON.stringify(user[0].id)}}</h6> -->
 </body>
 </html>
