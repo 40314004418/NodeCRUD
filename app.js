@@ -1,12 +1,14 @@
+require('dotenv').config();
 const http = require('http');
+const db=require('./connection/db');
 const express=require('express');
 const app=express();
-const User=require('./models/user');
-const sequelize=require('./connection/db');
+const cors = require('cors');
 const bodyParser=require('body-parser');
 const ejs=require('ejs');
-sequelize.sync();
 //root directory
+const port = process.env.PORT || 3000;
+
 //setting view engine
 var swig = require('swig');
 var path = require('path');
@@ -16,16 +18,25 @@ app.set('view engine', 'ejs')
 // ---------------------------------------
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: false }));
 app.use(bodyParser.json({ limit: '50mb' }));
+app.use(cors());
+app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With')
+    res.header('Access-Control-Allow-Headers', 'Content-Type')
+    next();
+});
+
 const userRoute=require('./router/myuser');
 const commonRoute=require('./router/common');
+const studentRoute=require('./router/student');
 // ---------------------------------------
 app.use('/user',userRoute);
 app.use('/common',commonRoute);
-
+app.use('/api',studentRoute);
 
 app.get('/',async(req,res)=>
 {
-       const user= await User.findAll({
+       const user= await db.User.findAll({
         order: [['id', 'DESC'] ]
     });         
         res.render('index.ejs',{ title: 'User list ',user:user });
@@ -35,6 +46,6 @@ app.get('/',async(req,res)=>
 
 
 
-app.listen(5000,()=>{
-    console.log('server is running')
+app.listen(port,()=>{
+    console.log(`server is running on port ${port}`);
 })

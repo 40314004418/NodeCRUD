@@ -1,3 +1,4 @@
+const db=require('../connection/db');
 const { paramsHaveRequestBody } = require('request/lib/helpers');
 const httpClient = require('../helper/http-client');
 const {Op}=require('sequelize')
@@ -40,7 +41,7 @@ async function GetAllUserByParams(req, res) {
         }
 
         console.log(query)
-        let allUsers =await User.findAll(query);
+        let allUsers =await db.Users.findAll(query);
         if(allUsers){
             res.status(200).json({"message":"All User",allUsersList:allUsers});
         }

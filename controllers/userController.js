@@ -1,4 +1,4 @@
-const User = require("../models/user");
+const db=require('../connection/db');
 const bcrypt = require('bcrypt');
 const nodemailer = require('../helper/mailer');
 const fs=require('fs').promises;
@@ -10,18 +10,18 @@ async function createUser(req, res) {
     try {
         const data = req.body;
         console.log(data);
-        const checkEMail = await User.findOne({
+        const checkEMail = await db.Users.findOne({
             where: {
                 email: data.email
             }
-        })
+        });
         const payload = {
             username: data.username,
             email: data.email,
             password: bcrypt.hashSync(data.password, salt)
         }
         if (!checkEMail) {
-            const user = await User.create(payload);
+            const user = await db.Users.create(payload);
             res.status(200).send({
                 status: true,
                 "message": "user created"
@@ -64,7 +64,7 @@ async function createUser(req, res) {
 async function loginUser(req, res) {
     try {
         const data = req.body;
-        let authenticateUser = await User.findOne({
+        let authenticateUser = await db.Users.findOne({
             where: {
                 email: data.email
             }
