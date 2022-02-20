@@ -6,7 +6,8 @@ const User = require("../models/user"); //to access User table
 const { elseif } = require('swig/lib/tags');
 const { param } = require('../router/myuser');
 const { get } = require('request');
-
+const fs=require('fs');
+const { response } = require('express');
 async function getIp(req, res) {
     try {
         const responsedata = await httpClient.get('https://api.ipify.org?format=json');
@@ -119,6 +120,7 @@ async function RegisterUser(req, res) {
         res.status(500).send({ status: false, message });
     }
 }
+
 
 
 module.exports={getIp,RegisterUser,GetAllUserByParams,ConsumeGetAllUserByParams};

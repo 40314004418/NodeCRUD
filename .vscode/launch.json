@@ -13,8 +13,8 @@
                 "<node_internals>/**"
             ],
             "type": "pwa-node"
-        }
-
+        },
+      
 
     ]
 }

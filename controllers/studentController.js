@@ -9,7 +9,6 @@ async function students(req,res){
     try{
         if(req.method==='GET'){
             const id=req.params.id;
-           
             let studentList;
             if(id>0){
                 studentList=await db.Students.findOne({where:{id:id}});

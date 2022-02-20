@@ -7,4 +7,5 @@ router.get('/GetUserByFilter/:id?',commonController.GetAllUserByParams);
 router.get('/ConsumeGetAllUserByParams',commonController.ConsumeGetAllUserByParams);
 
 
+
 module.exports=router;

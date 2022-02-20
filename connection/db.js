@@ -1,8 +1,7 @@
 const mysql = require('mysql2/promise');
 const { Sequelize } = require('sequelize');
 const mainConfig=require('../config.json');
-
-
+const logger= require('../helper/logger');
 module.exports=db={};
 module.exports.initialize=initialize;
 initialize();
@@ -14,7 +13,7 @@ try{
     const user = mainConfig.Localdatabase.user;
     const password = mainConfig.Localdatabase.password;
     const database = mainConfig.Localdatabase.database;
-    console.log('Connection Established..........')
+   
     console.log(user, password, database)
   
 

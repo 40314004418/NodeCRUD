@@ -6,6 +6,7 @@ const app=express();
 const cors = require('cors');
 const bodyParser=require('body-parser');
 const ejs=require('ejs');
+const logger =require('./helper/logger');
 //root directory
 const port = process.env.PORT || 3000;
 
@@ -36,10 +37,12 @@ app.use('/api',studentRoute);
 
 app.get('/',async(req,res)=>
 {
-       const user= await db.User.findAll({
+       const user= await db.Users.findAll({
         order: [['id', 'DESC'] ]
-    });         
-        res.render('index.ejs',{ title: 'User list ',user:user });
+    });   
+   console.log("hi...");
+   res.end(); 
+        //res.render('index.ejs',{ title: 'User list ',user:user });
         //console.log(JSON.stringify(user));
 });
 
@@ -48,4 +51,7 @@ app.get('/',async(req,res)=>
 
 app.listen(port,()=>{
     console.log(`server is running on port ${port}`);
+    
+   logger.info("info form logger...");
+   logger.error("error form logger...");
 })
